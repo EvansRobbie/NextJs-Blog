@@ -21,6 +21,12 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+    .item{
+        @apply flex gap-20 my-16 items-center flex-row odd:flex-row-reverse
+    }
+    /* .item:nth-child(2n){
+        @apply flex-row-reverse
+    } */
     .animate-image{
         animation: move 3s infinite ease alternate;
     }

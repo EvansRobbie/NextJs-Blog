@@ -31,3 +31,23 @@ export const links = [
     },
 ]
 
+export const portfolioData = [
+    {
+        id:1,
+        url:'/portfolio/illustrations',
+        title:"illustrations",
+        image:'/illustration.png'
+    },
+    {
+        id:2,
+        url:'/portfolio/websites',
+        title:"websites",
+        image:'/websites.jpg'
+    },
+    {
+        id:3,
+        url:'/portfolio/applications',
+        title:"applications",
+        image:'/apps.jpg'
+    },
+]
