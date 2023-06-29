@@ -10,7 +10,7 @@ export default function Home() {
       </div>
       <div className='w-[70vw] h-[70vh] flex relative flex-1'>
 
-      <Image fill={true} className='object-cover px-4' src='/hero.png' alt='homepage'/>
+      <Image fill={true} className='object-cover animate-image px-4' src='/hero.png' alt='homepage'/>
       </div>
     </main>
   )

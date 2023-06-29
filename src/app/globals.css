@@ -12,10 +12,24 @@
     html, body {
         @apply bg-slate-900 w-screen max-w-full overflow-x-hidden text-slate-200
     }
+    input, textarea {
+        @apply bg-transparent border-2 border-gray-700 rounded-md px-4 py-1.5 outline-none
+    }
     .title {
         @apply bg-gradient-to-b from-[var(--color-secondary)] to-gray-200;
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+    }
+    .animate-image{
+        animation: move 3s infinite ease alternate;
+    }
+    @keyframes move {
+        from {  
+            transform: translateY(-15px);
+        }
+        to {
+            transform: translateY(0px)  scale(1.03);
+        }
     }
 }
