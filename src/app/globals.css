@@ -10,13 +10,24 @@
         --color-secondary: #53c38b;
     }
     html, body {
-        @apply bg-slate-900 w-screen max-w-full overflow-x-hidden text-slate-200
+        @apply  w-screen max-w-full overflow-x-hidden 
     }
     input, textarea {
         @apply bg-transparent border-2 border-gray-700 rounded-md px-4 py-1.5 outline-none
     }
+    .light {
+        background-color: #f8f8f8;
+        color: #333;
+        /* Add other light mode styles */
+      }
+      
+      .dark {
+        background-color: #333;
+        color: #f8f8f8;
+        /* Add other dark mode styles */
+      }
     .title {
-        @apply bg-gradient-to-b from-[var(--color-secondary)] to-gray-200;
+        @apply bg-gradient-to-b from-[var(--color-secondary)] to-gray-500;
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;

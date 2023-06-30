@@ -11,7 +11,7 @@ const Portfolio = () => {
           portfolioData.map((portfolio) =>(
           <Link key={portfolio.id} style={{
             backgroundImage: `url(${portfolio.image})`}} className='relative group rounded-xl bg-cover  border-4 border-gray-600 h-[350px] w-[300px] ' href={portfolio.url}>
-              <span className='absolute bottom-5 right-5 text-2xl group-hover:text-secondary duration-500 ease-in font-bold capitalize'>{portfolio.title}</span>
+              <span className='absolute bottom-5 right-5 !text-slate-200 text-2xl group-hover:text-secondary duration-500 ease-in font-bold capitalize'>{portfolio.title}</span>
           </Link>
 
           ))

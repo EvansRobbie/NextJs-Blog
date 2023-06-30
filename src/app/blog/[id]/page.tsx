@@ -3,7 +3,7 @@ import React from "react";
 
 const BlogId = () => {
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 py-10">
       <div className="flex items-center gap-4">
         <div className="flex-1 flex flex-col justify-center gap-5">
           <h1 className="text-4xl font-bold">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h1>
