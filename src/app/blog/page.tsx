@@ -2,66 +2,44 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const Blog = () => {
+async function getData() {
+  const res = await fetch('http://localhost:3000/api/posts', { cache: 'no-store' })
+ 
+  // Recommendation: handle errors
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data')
+  }
+ 
+  return res.json()
+}
+
+const Blog = async () => {
+  const data = await getData()
   return (
     <div className="flex flex-col gap-5 py-10">
-      <Link href="/blog/testId" className="flex gap-20 items-center">
-        <div className="h-[200px]  w-[500px] relative rounded-md overflow-hidden">
-          <Image
-            fill={true}
-            src="https://images.pexels.com/photos/2402926/pexels-photo-2402926.jpeg?auto=compress&cs=tinysrgb&w=600"
-            alt=""
-            className="object-cover"
-          />
-        </div>
-        <div className="flex  flex-col gap-5 justify-center">
-          <h1 className="text-4xl font-bold ">Lorem, ipsum dolor.</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos sint
-            sunt nisi omnis blanditiis quam architecto doloribus? Sequi possimus
-            repellat, a minus sapiente optio odit molestiae quos eaque, tempora
-            eligendi!
-          </p>
-        </div>
-      </Link>
-      <Link href="/blog/testId" className="flex gap-20 items-center">
-        <div className="h-[200px]  w-[500px] relative rounded-md overflow-hidden">
-          <Image
-            fill={true}
-            src="https://images.pexels.com/photos/2402926/pexels-photo-2402926.jpeg?auto=compress&cs=tinysrgb&w=600"
-            alt=""
-            className="object-cover"
-          />
-        </div>
-        <div className="flex flex-col gap-5 justify-center">
-          <h1 className="text-4xl font-bold ">Lorem, ipsum dolor.</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos sint
-            sunt nisi omnis blanditiis quam architecto doloribus? Sequi possimus
-            repellat, a minus sapiente optio odit molestiae quos eaque, tempora
-            eligendi!
-          </p>
-        </div>
-      </Link>
-      <Link href="/blog/testId" className="flex gap-20 items-center">
-        <div className="h-[200px]  w-[500px] relative rounded-md overflow-hidden">
-          <Image
-            fill={true}
-            src="https://images.pexels.com/photos/2402926/pexels-photo-2402926.jpeg?auto=compress&cs=tinysrgb&w=600"
-            alt=""
-            className="object-cover"
-          />
-        </div>
-        <div className="flex flex-col gap-5 justify-center">
-          <h1 className="text-4xl font-bold ">Lorem, ipsum dolor.</h1>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos sint
-            sunt nisi omnis blanditiis quam architecto doloribus? Sequi possimus
-            repellat, a minus sapiente optio odit molestiae quos eaque, tempora
-            eligendi!
-          </p>
-        </div>
-      </Link>
+      {
+        data.map((blog:any) =>(
+
+          <Link href={`/blog/${blog._id}`} className="flex gap-20 items-center" key={blog.id}>
+            <div className="h-[200px]  w-[500px] flex flex-grow-0 relative rounded-md overflow-hidden">
+              <Image
+                fill={true}
+                src={blog.img}
+                alt=""
+                className="object-cover"
+              />
+            </div>
+            <div className="flex  flex-col gap-5 justify-center w-[100vw]">
+              <h1 className="text-4xl font-bold ">{blog.title}.</h1>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam odio sunt, rem impedit consequuntur minima consequatur. Veritatis, quae vel. Quae minus ipsam praesentium distinctio eos maxime quidem, odio suscipit delectus.
+              </p>
+            </div>
+          </Link>
+        ))
+      }
+      
     </div>
   );
 };

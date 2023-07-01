@@ -1,12 +1,29 @@
 import Image from "next/image";
 import React from "react";
+import {notFound} from 'next/navigation'
 
-const BlogId = () => {
+async function getData(id:number) {
+  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, { cache: 'no-store' })
+ 
+  // Recommendation: handle errors
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    // throw new Error('Failed to fetch data')
+    return notFound()
+  }
+ 
+  return res.json()
+}
+
+
+const BlogId = async ({params:{id}}:{params:{id:number}}) => {
+  // console.log(id)
+  const data = await getData(id)
   return (
     <div className="flex flex-col gap-10 py-10">
       <div className="flex items-center gap-4">
         <div className="flex-1 flex flex-col justify-center gap-5">
-          <h1 className="text-4xl font-bold">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h1>
+          <h1 className="text-4xl font-bold">{data.title}</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Exercitationem corporis hic corrupti rem recusandae id, quam vel

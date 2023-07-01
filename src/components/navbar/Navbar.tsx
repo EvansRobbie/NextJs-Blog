@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link";
 import React from "react";
-import { links } from "@/utils/data/Data";
+import { links } from "@/app/portfolio/Data";
 import ToggleButton from "../toggleButton/ToggleButton";
 import { useThemeContext } from "@/context/ThemeContext";
 interface linkProps {

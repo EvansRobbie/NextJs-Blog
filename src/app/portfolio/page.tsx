@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
-import { portfolioData } from '@/utils/data/Data'
+import { portfolioData } from '@/app/portfolio/Data'
 
 const Portfolio = () => {
   return (
