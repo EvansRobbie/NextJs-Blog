@@ -1,5 +1,10 @@
 import React from 'react'
 
+export const metadata = {
+  title: 'portfolio',
+  description: 'Our work',
+}
+
 const PortfolioLayout = ({children}: {children: React.ReactNode}) => {
   return (
     <div>

@@ -2,8 +2,8 @@ import Image from "next/image";
 import React from "react";
 import {notFound} from 'next/navigation'
 
-async function getData(id:number) {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`, { cache: 'no-store' })
+async function getData(id:string) {
+  const res = await fetch(`http://localhost:3000/api/posts/${id}`, { cache: 'no-store' })
  
   // Recommendation: handle errors
   if (!res.ok) {
@@ -15,8 +15,15 @@ async function getData(id:number) {
   return res.json()
 }
 
+export async function generateMetadata({ params:{id} } : {params:{id:string}}) {
+  const data  = await getData(id)
+  return {
+    title: data.title,
+    description:data.desc
+  }
+}
 
-const BlogId = async ({params:{id}}:{params:{id:number}}) => {
+const BlogId = async ({params:{id}}:{params:{id:string}}) => {
   // console.log(id)
   const data = await getData(id)
   return (
@@ -33,13 +40,13 @@ const BlogId = async ({params:{id}}:{params:{id:number}}) => {
           </p>
           <div className="flex items-center gap-2 ">
             <div className="w-10 h-10 relative rounded-full overflow-hidden">
-              <Image fill={true} className="object-cover grayscale" src={`https://images.pexels.com/photos/16971294/pexels-photo-16971294/free-photo-of-woman-posing-on-dessert.jpeg?auto=compress&cs=tinysrgb&w=600`} alt="" />
+              <Image fill={true} className="object-cover grayscale" src={data.img} alt="" />
             </div>
-            <span className="text-">Jone Doe</span>
+            <span className="text-">{data.username}</span>
           </div>
         </div>
         <div className="w-[500px] h-[250px] relative flex-1 rounded-xl overflow-hidden">
-          <Image fill={true} className="object-cover" src={`https://images.pexels.com/photos/91409/pexels-photo-91409.jpeg?auto=compress&cs=tinysrgb&w=600`} alt="" />
+          <Image fill={true} className="object-cover" src={data.img} alt="" />
         </div>
       </div>
       <div>
