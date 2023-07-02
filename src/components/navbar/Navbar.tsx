@@ -4,6 +4,7 @@ import React from "react";
 import { links } from "@/app/portfolio/Data";
 import ToggleButton from "../toggleButton/ToggleButton";
 import { useThemeContext } from "@/context/ThemeContext";
+import { signOut } from "next-auth/react";
 interface linkProps {
   id: number;
   title: string;
@@ -21,7 +22,7 @@ const Navbar = () => {
         {links.map((link: linkProps) => (
           <Link key={link.id} href={link.url}>{link.title}</Link>
         ))}
-      <button className="px-4 py-1.5 rounded-xl active:scale-105 bg-secondary text-center" onClick={()=> console.log("logged out")}>Logout</button>
+      <button className="px-4 py-1.5 rounded-xl active:scale-105 bg-secondary text-center" onClick={()=>signOut()}>Logout</button>
       </div>
     </nav>
   );
