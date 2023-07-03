@@ -1,14 +1,22 @@
 "use client";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 const Login = () => {
+  const session  = useSession()
   const router = useRouter();
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [err, setErr] = useState<boolean>(false);
+
+  if (session.status === "loading"){
+    return <p>Loading...</p>
+  }
+  if (session.status === "authenticated"){
+    router.push('/dashboard')
+  }
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // console.log(email, password, username)
@@ -17,7 +25,7 @@ const Login = () => {
         email,
         password,
       });
-      router.push("/dashboard");
+      // router.push("/");
     } catch (error) {
       console.log(error);
       setErr(true);
