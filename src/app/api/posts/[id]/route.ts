@@ -16,3 +16,18 @@ export const GET = async (request:Request, {params:{id}}:{params:{id:String}}) =
 
 
 }
+
+export const DELETE = async (request:Request, {params:{id}}:{params:{id:String}}) =>{
+    // console.log(id)
+    try {
+        await connect()
+        await Post.findByIdAndDelete(id)
+        return new NextResponse("Post Deleted", {status:200})
+    } catch (error) {
+        
+        return new NextResponse('Database Error', {status: 500})
+    }
+
+
+
+}
