@@ -1,4 +1,5 @@
 import NextAuth from "next-auth";
+import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials";
 import connect from "@/utils/db";
 import User from "@/models/User";
@@ -9,6 +10,10 @@ import bcrypt from 'bcryptjs';
 const handler = NextAuth({
   // Configure one or more authentication providers
   providers: [
+      GoogleProvider({
+        clientId: process.env.Google_ID as string,
+        clientSecret: process.env.Google_SECRET as string,
+      }),
     CredentialsProvider({
       id: "credentials",
       name: "Credentials",
